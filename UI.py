@@ -81,13 +81,22 @@ while running:
             row, col = SELECTED_CELL
             if event.key in range(pygame.K_1, pygame.K_9 + 1):
                 num = event.key - pygame.K_0
-                # Abfrage ob Zahl korrekt (da "yield" in der Funktion, kein normaler Aufruf möglich)
-                temp_board = [row[:] for row in sudoku_solver.board]
-                for _ in sudoku_solver.solve(sudoku_solver.board):
-                    pass
-                if sudoku_solver.board[row][col] == num:
-                    temp_board[row][col] = num
-                sudoku_solver.board = temp_board
+                if sudoku_solver.valid(sudoku_solver.board, num, (row, col)):
+                    # Abfrage ob Zahl korrekt (da "yield" in der Funktion, kein normaler Aufruf möglich)
+                    temp_board = [row[:] for row in sudoku_solver.board]
+                    sudoku_solver.board[row][col] = num
+                    gen = sudoku_solver.solve(sudoku_solver.board)
+                    while True:
+                        try:
+                            next(gen)
+                        except StopIteration as e:
+                            solvable = e.value
+                            break
+                    if solvable:
+                        temp_board[row][col] = num
+                        sudoku_solver.board = temp_board
+                    else:
+                        sudoku_solver.board = temp_board
             if event.key == pygame.K_BACKSPACE or event.key == pygame.K_DELETE:
                 sudoku_solver.board[row][col] = 0
     if solving:
