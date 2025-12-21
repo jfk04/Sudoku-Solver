@@ -48,3 +48,4 @@ Users can:
    python UI.py
 
 ## 🍿 Video
+[![Watch the video] (assets/)
