@@ -48,4 +48,4 @@ Users can:
    python UI.py
 
 ## 🍿 Video
-[![Sudoku Solver Demo](Animation.gif)
+![Sudoku Solver Demo](Animation.gif)
