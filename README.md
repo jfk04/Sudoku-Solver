@@ -48,4 +48,4 @@ Users can:
    python UI.py
 
 ## 🍿 Video
-[![Watch the video] <video src="SudokuSolver.mp4" controls width="600"></video>
+[![Sudoku Solver Demo](SudokuSolver_Thumbnail.png)](SudokuSolver.mp4)
